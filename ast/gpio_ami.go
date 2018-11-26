@@ -69,22 +69,22 @@ func (a *amiGpio) MustSetPinDirection(pin int, out bool) {
 
 func (a *Ast) IsPoweredOn() bool {
 	// Power status is active high
-	return a.p.MustReadPin(PIN_POWER_STATUS)
+	return a.g.MustReadPin(PIN_POWER_STATUS)
 }
 
 func (a *Ast) HoldPowerButton(dur time.Duration) {
 	// Power switch is active low
-	p.MustSetPin(PIN_POWER_SWITCH, false)
+	a.g.MustSetPin(PIN_POWER_SWITCH, false)
 	time.Sleep(dur)
-	p.MustSetPin(PIN_POWER_SWITCH, true)
+	a.g.MustSetPin(PIN_POWER_SWITCH, true)
 }
 
 func (a *Ast) SetBiosBmcMaster(master bool) {
 	if master {
-		p.MustSetPin(PIN_BIOS_BMC_MASTER, true)
-		p.MustSetPinDirection(PIN_BIOS_BMC_MASTER, true)
+		a.g.MustSetPin(PIN_BIOS_BMC_MASTER, true)
+		a.g.MustSetPinDirection(PIN_BIOS_BMC_MASTER, true)
 	} else {
-		p.MustSetPinDirection(PIN_BIOS_BMC_MASTER, false)
+		a.g.MustSetPinDirection(PIN_BIOS_BMC_MASTER, false)
 	}
 }
 
